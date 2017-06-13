@@ -10,35 +10,50 @@
 
 int main(int argc, const char * argv[]) {
     // insert code here...
-    printf("Hello, World!\n");
-    printf("今天高考\n");
+    //printf("Hello, World!\n");
+    //printf("今天高考\n");
     int a[20];
     int n,k,j,t,i;
-    while(scanf("%d",&n)!=EOF)
+    FILE *fp1,*fp2;
+    fp1=fopen("//Users//s20161104611//Desktop//test1//sortout.txt","w");
+    fp2=fopen("//Users//s20161104611//Desktop//test1//sort.txt","r+");
+    if(fp2==NULL)
     {
-        for(i=0;i<n;i++)
+        printf("打开文件错误，要打开的文件可能不存在");
+        
+    }
+    else
+    {
+        while(fscanf(fp2,"%d",&n)!=EOF)
         {
-            scanf("%d",&a[i]);
-        }
-        for(j=0; j<n-1; j++)
-        {
-            for(k=0; k<n-1-j; k++)
+            for(i=0;i<n;i++)
             {
-                if(a[k]>a[k+1])
+                fscanf(fp2,"%d",&a[i]);
+            }
+            for(j=0; j<n-1; j++)
+            {
+                for(k=0; k<n-1-j; k++)
                 {
-                    t=a[k];
-                    a[k]=a[k+1];
-                    a[k+1]=t;
+                    if(a[k]>a[k+1])
+                    {
+                        t=a[k];
+                        a[k]=a[k+1];
+                        a[k+1]=t;
+                    }
                 }
             }
+            for(k=0; k<i; k++)
+            {
+                printf("%d ",a[k]);
+                fprintf(fp1,"%d ",a[k]);
+            }
+            fprintf(fp1,"\n");
+            printf("\n");
+            
         }
-        for(k=0; k<i; k++)
-        {
-            printf("%d ",a[k]);
-        }
-        printf("\n");
+        fclose(fp1);
+        fclose(fp2);
     }
-    
 
     return 0;
 }
