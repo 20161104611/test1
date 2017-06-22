@@ -34,7 +34,7 @@ int main(int argc, const char * argv[]) {
     {//$GPRMC,013238,A,4047.533,N,11141.856,E,012.2,253.6,100517,,*1A
      //$GPGGA,013238,4047.533,N,11141.856,E,1,05,,1108,M,,M,,*57
      ///Users/s20161104611/Desktop/test1/maopao.numbers
-        while(fscanf(fp2,"$GPRMC,%6s,%c,%8s,%c,%8s,%c,%lf,%lf,%6s,,%3s\n$GPGGA,%6s,%lf,%c,%lf,%c,%d,%2s,,%4s,M,,M,,%3s\n",time,&gps,latitude,&latitude1,longitude,&longitude1,&v,&course,year,s,Time,&Latitude,&Latitude1,&Longitude,&Longitude1,&Gps,moon,altitude,S)!=EOF)
+        while(fscanf(fp2,"$GPRMC,%6s,%c,%8s,%c,%9s,%c,%lf,%lf,%6s,,%3s\n$GPGGA,%6s,%lf,%c,%lf,%c,%d,%2s,,%4s,M,,M,,%3s\n",time,&gps,latitude,&latitude1,longitude,&longitude1,&v,&course,year,s,Time,&Latitude,&Latitude1,&Longitude,&Longitude1,&Gps,moon,altitude,S)!=EOF)
         {
             if(gps=='A')
             {
@@ -45,25 +45,25 @@ int main(int argc, const char * argv[]) {
                 {
                     fprintf(fp1,"该车位于北纬%c%c度%c%c%c%c%c分\n",latitude[0],latitude[1],latitude[2],latitude[3],latitude[5],latitude[6],latitude[7]);
                     printf("该车位于北纬%c%c度%c%c%c%c%c分\n",latitude[0],latitude[1],latitude[2],latitude[3],latitude[5],latitude[6],latitude[7]);
-                    fprintf(fp3,"北纬%c%c度%c%c%c%c%c分\n",latitude[0],latitude[1],latitude[2],latitude[3],latitude[5],latitude[6],latitude[7]);
+                    fprintf(fp3,"北纬%c%c度%c%c%c%c%c分,",latitude[0],latitude[1],latitude[2],latitude[3],latitude[5],latitude[6],latitude[7]);
                 }
                 else
                 {
                     fprintf(fp1,"该车位于南纬%c%c度%c%c%c%c%c分\n",latitude[0],latitude[1],latitude[2],latitude[3],latitude[5],latitude[6],latitude[7]);
                     printf("该车位于南纬%c%c度%c%c%c%c%c分\n",latitude[0],latitude[1],latitude[2],latitude[3],latitude[5],latitude[6],latitude[7]);
-                    fprintf(fp3,"南纬%c%c度%c%c%c%c%c分\n",latitude[0],latitude[1],latitude[2],latitude[3],latitude[5],latitude[6],latitude[7]);
+                    fprintf(fp3,"南纬%c%c度%c%c%c%c%c分,",latitude[0],latitude[1],latitude[2],latitude[3],latitude[5],latitude[6],latitude[7]);
                 }
                 if(longitude1=='E')
                 {
                     fprintf(fp1,"该车位于东经%c%c%c度%c%c%c%c分\n",longitude[0],longitude[1],longitude[2],longitude[3],longitude[4],longitude[6],longitude[7]);
                     printf("该车位于东经%c%c%c度%c%c%c%c分\n",longitude[0],longitude[1],longitude[2],longitude[3],longitude[4],longitude[6],longitude[7]);
-                    fprintf(fp3,"东经%c%c%c度%c%c%c%c分\n",longitude[0],longitude[1],longitude[2],longitude[3],longitude[4],longitude[6],longitude[7]);
+                    fprintf(fp3,"东经%c%c%c度%c%c%c%c分,",longitude[0],longitude[1],longitude[2],longitude[3],longitude[4],longitude[6],longitude[7]);
                 }
                 else
                 {
                     fprintf(fp1,"该车位于西经%c%c%c度%c%c%c%c分\n",longitude[0],longitude[1],longitude[2],longitude[3],longitude[4],longitude[6],longitude[7]);
                     printf("该车位于西经%c%c%c度%c%c%c%c分\n",longitude[0],longitude[1],longitude[2],longitude[3],longitude[4],longitude[6],longitude[7]);
-                    fprintf(fp3,"西经%c%c%c度%c%c%c%c分\n",longitude[0],longitude[1],longitude[2],longitude[3],longitude[4],longitude[6],longitude[7]);
+                    fprintf(fp3,"西经%c%c%c度%c%c%c%c分,",longitude[0],longitude[1],longitude[2],longitude[3],longitude[4],longitude[6],longitude[7]);
                 }
                 fprintf(fp1,"地面速率是%lf节，地面航向是%lf度\n",v,course);
                 printf("地面速率是%lf节，地面航向是%lf度\n",v,course);
