@@ -38,9 +38,9 @@ int main(int argc, const char * argv[]) {
         {
             if(gps=='A')
             {
-                fprintf(fp1,"当前是%c%c年%c%c月%c%c日%c%c时%c%c分%c%c秒\n",year[4],year[5],year[2],year[3],year[0],year[1],time[0],time[1],time[2],time[3],time[4],time[5]);
-                printf("当前是%c%c年%c%c月%c%c日%c%c时%c%c分%c%c秒\n",year[4],year[5],year[2],year[3],year[0],year[1],time[0],time[1],time[2],time[3],time[4],time[5]);
-                fprintf(fp3,"%c%c年%c%c月%c%c日,%c%c时%c%c分%c%c秒,",year[4],year[5],year[2],year[3],year[0],year[1],time[0],time[1],time[2],time[3],time[4],time[5]);
+                fprintf(fp1,"当前是%c%c年%c%c月%c%c日%c%c时%c%c分%c%c秒\n",year[4],year[5],year[2],year[3],year[0],year[1],time[0],time[1]+8,time[2],time[3],time[4],time[5]);
+                printf("当前是%c%c年%c%c月%c%c日%c%c时%c%c分%c%c秒\n",year[4],year[5],year[2],year[3],year[0],year[1],time[0],time[1]+8,time[2],time[3],time[4],time[5]);
+                fprintf(fp3,"%c%c年%c%c月%c%c日,%c%c时%c%c分%c%c秒,",year[4],year[5],year[2],year[3],year[0],year[1],time[0],time[1]+8,time[2],time[3],time[4],time[5]);
                 if(latitude1=='N')
                 {
                     fprintf(fp1,"该车位于北纬%c%c度%c%c%c%c%c分\n",latitude[0],latitude[1],latitude[2],latitude[3],latitude[5],latitude[6],latitude[7]);
