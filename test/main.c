@@ -23,7 +23,7 @@ int main(int argc, const char * argv[]) {
     char Time[10],Latitude1,Longitude1,moon[10],S[5],altitude[10];
     double Latitude,Longitude;
     int Gps;
-    fp1=fopen("//Users//s20161104611//Desktop//test1//maopao.txt","w+");
+    fp1=fopen("//Users//s20161104611//Desktop//test1//gps.txt","w+");
     fp2=fopen("//Users//s20161104611//Desktop//test1//GPS170510.log","r");
     fp3=fopen("//Users//s20161104611//Desktop//test1//sort.csv","w+");
     if(fp2==NULL)
@@ -149,34 +149,7 @@ int main(int argc, const char * argv[]) {
 
         }
     
-        //fscanf(fp2,"$GPGGA,%6s,%lf,%c,%lf,%c,%d,%s,,%4s,M,,M,,%3s",Time,&Latitude,&Latitude1,&Longitude,&Longitude1,&Gps,moon,altitude,S);
-                /*while(fscanf(fp2,"%d",&n)!=EOF)
-        {
-            for(i=0;i<n;i++)
-            {
-                fscanf(fp2,"%d",&a[i]);
-            }
-            for(j=0; j<n-1; j++)
-            {
-                for(k=0; k<n-1-j; k++)
-                {
-                    if(a[k]>a[k+1])
-                    {
-                        t=a[k];
-                        a[k]=a[k+1];
-                        a[k+1]=t;
-                    }
-                }
-            }
-            for(k=0; k<i; k++)
-            {
-                printf("%d ",a[k]);
-                fprintf(fp1,"%d ",a[k]);
-            }
-            fprintf(fp1,"\n");
-            printf("\n");
-            
-        }*/
+    
         fclose(fp1);
         fclose(fp2);
         fclose(fp3);
