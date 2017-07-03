@@ -19,7 +19,7 @@ int main(int argc, const char * argv[]) {
     char time[10],gps,latitude1,longitude1,year[10],s[5],latitude[10],longitude[10];
     double course,a;
     //FILE *fp1,*fp2;
-    FILE *fp2,*fp1,*fp3,*fp4,*fp5;
+    FILE *fp2,*fp1,*fp3;
     char Time[10],Latitude1,Longitude1,moon[10],S[5],altitude[10];
     double Latitude,Longitude;
     int Gps;
@@ -154,6 +154,4 @@ int main(int argc, const char * argv[]) {
         fclose(fp1);
         fclose(fp2);
         fclose(fp3);
-        fclose(fp4);
-        fclose(fp5);
 }
