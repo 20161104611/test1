@@ -17,15 +17,17 @@ int main(int argc, const char * argv[]) {
     //int a[20];
     //int n,k,j,t,i;
     char time[10],gps,latitude1,longitude1,year[10],s[5],latitude[10],longitude[10];
-    double v,course;
+    double course,a;
     //FILE *fp1,*fp2;
-    FILE *fp2,*fp1,*fp3;
+    FILE *fp2,*fp1,*fp3,*fp4,*fp5;
     char Time[10],Latitude1,Longitude1,moon[10],S[5],altitude[10];
     double Latitude,Longitude;
     int Gps;
-    fp1=fopen("//Users//s20161104611//Desktop//test1//gps.txt","w+");
+    fp1=fopen("//Users//s20161104611//Desktop//test1//gps.txt","w");
     fp2=fopen("//Users//s20161104611//Desktop//test1//GPS170510.log","r");
-    fp3=fopen("//Users//s20161104611//Desktop//test1//sort.csv","w+");
+    fp3=fopen("//Users//s20161104611//Desktop//test1//sort.csv","w");
+    fp4=fopen("//Users//s20161104611//Desktop//test1//sortout.txt","w");
+    fp5=fopen("//Users//s20161104611//Desktop//test1//sort.txt","w");
     if(fp2==NULL)
     {
         printf("打开文件错误，要打开的文件可能不存在");
@@ -34,7 +36,8 @@ int main(int argc, const char * argv[]) {
     {//$GPRMC,013238,A,4047.533,N,11141.856,E,012.2,253.6,100517,,*1A
      //$GPGGA,013238,4047.533,N,11141.856,E,1,05,,1108,M,,M,,*57
      ///Users/s20161104611/Desktop/test1/maopao.numbers
-        while(fscanf(fp2,"$GPRMC,%6s,%c,%8s,%c,%9s,%c,%lf,%lf,%6s,,%3s\n$GPGGA,%6s,%lf,%c,%lf,%c,%d,%2s,,%4s,M,,M,,%3s\n",time,&gps,latitude,&latitude1,longitude,&longitude1,&v,&course,year,s,Time,&Latitude,&Latitude1,&Longitude,&Longitude1,&Gps,moon,altitude,S)!=EOF)
+        fprintf(fp3,"日期,时间,纬度,经度,地面速率,地面航向,GPS状态,使用卫星数量,海拔高度\n");
+        while(fscanf(fp2,"$GPRMC,%6s,%c,%8s,%c,%9s,%c,%lf,%lf,%6s,,%3s\n$GPGGA,%6s,%lf,%c,%lf,%c,%d,%2s,,%4s,M,,M,,%3s\n",time,&gps,latitude,&latitude1,longitude,&longitude1,&a,&course,year,s,Time,&Latitude,&Latitude1,&Longitude,&Longitude1,&Gps,moon,altitude,S)!=EOF)
         {
             if(gps=='A')
             {
@@ -43,31 +46,36 @@ int main(int argc, const char * argv[]) {
                 fprintf(fp3,"%c%c年%c%c月%c%c日,%c%c时%c%c分%c%c秒,",year[4],year[5],year[2],year[3],year[0],year[1],time[0],time[1]+8,time[2],time[3],time[4],time[5]);
                 if(latitude1=='N')
                 {
-                    fprintf(fp1,"该车位于北纬%c%c度%c%c%c%c%c分\n",latitude[0],latitude[1],latitude[2],latitude[3],latitude[5],latitude[6],latitude[7]);
-                    printf("该车位于北纬%c%c度%c%c%c%c%c分\n",latitude[0],latitude[1],latitude[2],latitude[3],latitude[5],latitude[6],latitude[7]);
-                    fprintf(fp3,"北纬%c%c度%c%c%c%c%c分,",latitude[0],latitude[1],latitude[2],latitude[3],latitude[5],latitude[6],latitude[7]);
+                    fprintf(fp1,"该车位于北纬%c%c.%c%c%c%c%c度\n",latitude[0],latitude[1],latitude[2],latitude[3],latitude[5],latitude[6],latitude[7]);
+                    fprintf(fp4,"%c%c.%c%c%c%c%c\n",latitude[0],latitude[1],latitude[2],latitude[3],latitude[5],latitude[6],latitude[7]);
+                    printf("该车位于北纬%c%c.%c%c%c%c%c度\n",latitude[0],latitude[1],latitude[2],latitude[3],latitude[5],latitude[6],latitude[7]);
+                    fprintf(fp3,"北纬%c%c.%c%c%c%c%c度,",latitude[0],latitude[1],latitude[2],latitude[3],latitude[5],latitude[6],latitude[7]);
                 }
                 else
                 {
-                    fprintf(fp1,"该车位于南纬%c%c度%c%c%c%c%c分\n",latitude[0],latitude[1],latitude[2],latitude[3],latitude[5],latitude[6],latitude[7]);
-                    printf("该车位于南纬%c%c度%c%c%c%c%c分\n",latitude[0],latitude[1],latitude[2],latitude[3],latitude[5],latitude[6],latitude[7]);
-                    fprintf(fp3,"南纬%c%c度%c%c%c%c%c分,",latitude[0],latitude[1],latitude[2],latitude[3],latitude[5],latitude[6],latitude[7]);
+                    fprintf(fp1,"该车位于南纬%c%c.%c%c%c%c%c度\n",latitude[0],latitude[1],latitude[2],latitude[3],latitude[5],latitude[6],latitude[7]);
+                    fprintf(fp4,"%c%c.%c%c%c%c%c\n",latitude[0],latitude[1],latitude[2],latitude[3],latitude[5],latitude[6],latitude[7]);
+                    printf("该车位于南纬%c%c.%c%c%c%c%c度\n",latitude[0],latitude[1],latitude[2],latitude[3],latitude[5],latitude[6],latitude[7]);
+                    fprintf(fp3,"南纬%c%c.%c%c%c%c%c度,",latitude[0],latitude[1],latitude[2],latitude[3],latitude[5],latitude[6],latitude[7]);
                 }
                 if(longitude1=='E')
                 {
-                    fprintf(fp1,"该车位于东经%c%c%c度%c%c%c%c分\n",longitude[0],longitude[1],longitude[2],longitude[3],longitude[4],longitude[6],longitude[7]);
-                    printf("该车位于东经%c%c%c度%c%c%c%c分\n",longitude[0],longitude[1],longitude[2],longitude[3],longitude[4],longitude[6],longitude[7]);
-                    fprintf(fp3,"东经%c%c%c度%c%c%c%c分,",longitude[0],longitude[1],longitude[2],longitude[3],longitude[4],longitude[6],longitude[7]);
+                    fprintf(fp1,"该车位于东经%c%c%c.%c%c%c%c度\n",longitude[0],longitude[1],longitude[2],longitude[3],longitude[4],longitude[6],longitude[7]);
+                    fprintf(fp5,"%c%c%c.%c%c%c%c\n",longitude[0],longitude[1],longitude[2],longitude[3],longitude[4],longitude[6],longitude[7]);
+                    printf("该车位于东经%c%c%c.%c%c%c%c度\n",longitude[0],longitude[1],longitude[2],longitude[3],longitude[4],longitude[6],longitude[7]);
+                    fprintf(fp3,"东经%c%c%c.%c%c%c%c度,",longitude[0],longitude[1],longitude[2],longitude[3],longitude[4],longitude[6],longitude[7]);
                 }
                 else
                 {
-                    fprintf(fp1,"该车位于西经%c%c%c度%c%c%c%c分\n",longitude[0],longitude[1],longitude[2],longitude[3],longitude[4],longitude[6],longitude[7]);
-                    printf("该车位于西经%c%c%c度%c%c%c%c分\n",longitude[0],longitude[1],longitude[2],longitude[3],longitude[4],longitude[6],longitude[7]);
-                    fprintf(fp3,"西经%c%c%c度%c%c%c%c分,",longitude[0],longitude[1],longitude[2],longitude[3],longitude[4],longitude[6],longitude[7]);
+                    fprintf(fp1,"该车位于西经%c%c%c.%c%c%c%c度\n",longitude[0],longitude[1],longitude[2],longitude[3],longitude[4],longitude[6],longitude[7]);
+                    fprintf(fp5,"%c%c%c.%c%c%c%c\n",longitude[0],longitude[1],longitude[2],longitude[3],longitude[4],longitude[6],longitude[7]);
+                    printf("该车位于西经%c%c%c.%c%c%c%c度\n",longitude[0],longitude[1],longitude[2],longitude[3],longitude[4],longitude[6],longitude[7]);
+                    fprintf(fp3,"西经%c%c%c.%c%c%c%c度,",longitude[0],longitude[1],longitude[2],longitude[3],longitude[4],longitude[6],longitude[7]);
                 }
-                fprintf(fp1,"地面速率是%lf节，地面航向是%lf度\n",v,course);
-                printf("地面速率是%lf节，地面航向是%lf度\n",v,course);
-                fprintf(fp3,"地面速率是%lf节,地面航向是%lf度,",v,course);
+                 printf("地面速率是%lf节，地面航向是%lf度\n",a,course);
+                fprintf(fp1,"地面速率是%lf节，地面航向是%lf度\n",a,course);
+                printf("地面速率是%lf节，地面航向是%lf度\n",a,course);
+                fprintf(fp3,"%lf节,%lf度,",a,course);
                 
             }
             else
@@ -78,7 +86,6 @@ int main(int argc, const char * argv[]) {
             }
             fprintf(fp1,"GPS状态是：");
             printf("GPS状态是：");
-            fprintf(fp3,"GPS状态是：,");
             switch (Gps)
             {
                 case 0:
@@ -140,8 +147,8 @@ int main(int argc, const char * argv[]) {
             printf("海拔高度:%s\n",altitude);
             printf("\n");
             fprintf(fp1,"\n");
-            fprintf(fp3,"使用卫星数量:%s,",moon);
-            fprintf(fp3,"海拔高度:%s,",altitude);
+            fprintf(fp3,"%s,",moon);
+            fprintf(fp3,"%s,",altitude);
             fprintf(fp3,"\n");
             
             
@@ -153,4 +160,6 @@ int main(int argc, const char * argv[]) {
         fclose(fp1);
         fclose(fp2);
         fclose(fp3);
+        fclose(fp4);
+        fclose(fp5);
 }
